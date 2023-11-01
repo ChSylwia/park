@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  background-color: #e6e2c3;
+}
+div {
+  position: relative;
+  text-align: center;
+}
+div.menu {
+  width: 100vw;
+  text-align: center;
+  color: #e6e2c3;
+  text-transform: none;
+}
+
+div.menu ul {
+  position: absolute;
+  background-color: #88a47c;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  width: 80vw;
+  list-style: none;
+  right: 0%;
+}
+div.menu li {
+  background-color: #88a47c;
+  line-height: 5vw;
+  width: calc((100% / 3));
+  float: left;
+}
+div.menu li:last-child {
+  border-right: none;
+}
+div.menu li:nth-child(1) {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+div.menu li:hover {
+  font-size: 26px;
+  background-color: #3c6255;
+}
+
+div.menu a {
+  color: #e6e2c3;
+  text-decoration: none;
+}
+div.srodek {
+  position: absolute;
+  top: 6vw;
+}
+div.lewy {
+  text-align: center;
+  width: 50vw;
+  float: left;
+}
+div.prawy {
+  width: 50vw;
+  float: left;
+}
+img.logo {
+  position: absolute;
+  height: 5vw;
+  margin: 5px;
+}
+img.mapa {
+  width: 30vw;
+}
+div.pasek_dolny {
+  position: absolute;
+  bottom: 0%;
+  background-color: #88a47c;
+  width: 50vw;
+  height: 5vw;
+  float: left;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}

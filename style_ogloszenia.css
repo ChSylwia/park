@@ -1,0 +1,51 @@
+div.menu li.ogloszenia {
+  font-size: 26px;
+  background-color: #3c6255;
+}
+#wyszukaj {
+  background-color: #d0d4ca;
+  width: 60vw;
+  height: 3vw;
+  border: #d0d4ca;
+  border-radius: 20px;
+}
+
+div.lewy {
+  width: 80vw;
+}
+div.prawy {
+  right: 5vw;
+  width: 20vw;
+}
+.button_wyszukania {
+  width: 15vw;
+  height: 3vw;
+  font-size: 20px;
+  background-color: #88a47c;
+  border: #88a47c;
+  color: #e6e2c3;
+  border-radius: 20px;
+}
+button.dodaj {
+  float: right;
+  width: 15vw;
+  height: 3vw;
+  font-size: 20px;
+  background-color: #88a47c;
+  border: #88a47c;
+  color: #e6e2c3;
+  border-radius: 20px;
+}
+button.dodaj a {
+  color: #e6e2c3;
+  text-decoration: none;
+}
+div.tlo {
+  position: absolute;
+  margin: 5px;
+  bottom: 0%;
+  right: 0%;
+}
+img.lisc {
+  width: 40vh;
+}

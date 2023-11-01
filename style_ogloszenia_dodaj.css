@@ -1,0 +1,34 @@
+#tytul,
+#park,
+#data,
+#opis {
+  float: left;
+  background-color: #d0d4ca;
+  margin: 5px;
+
+  width: 70vw;
+  height: 3vw;
+  border: #d0d4ca;
+  border-radius: 20px;
+}
+#data {
+  width: 32vw;
+}
+#opis {
+  height: 40vh;
+}
+#input_dodawanie {
+  text-align: center;
+  width: 15vw;
+  height: 5vw;
+  margin: 5px;
+  font-size: 20px;
+  background-color: #88a47c;
+  border: #3c6255;
+  color: #e6e2c3;
+  border-radius: 20px;
+  z-index: 1;
+}
+#img.lisc {
+  z-index: 2;
+}

@@ -12,7 +12,7 @@
          
         // Check connection
         if($conn === false){
-            die("ERROR: Nie można się zalogować. ". mysqli_connect_error());
+            die("ERROR: Nie można się zalogować!!! ". mysqli_connect_error());
         }
         $tytul = $_REQUEST['tytul'];
         $park = $_REQUEST['parks'];

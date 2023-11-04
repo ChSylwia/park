@@ -62,8 +62,8 @@
 
       park.addEventListener("keyup", async (wypisz) => {
         console.log(adres + park.value);
-        $adres_caly = adres + park.value;
-        const a = await fetch($adres_caly);
+        var adres_caly = adres + park.value;
+        const a = await fetch(adres_caly);
         const response = await a.json();
         console.log(response);
         var value = document.getElementById("parks");

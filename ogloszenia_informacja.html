@@ -10,6 +10,7 @@
     />
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" type="text/css" href="style_ogloszenia.css" />
+    <link rel="stylesheet" type="text/css" href="style_ogloszenia_info.css" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Parki</title>
@@ -23,36 +24,18 @@
         <li class="logowanie"><a href="logowanie.html">Zaloguj się</a></li>
       </ul>
     </div>
-    <div class="srodek">
-      <div class="lewy">
-        <form method="post" action="form_wyszukaj.php">
-          <input
-            id="wyszukaj"
-            name="wyszukaj"
-            placeholder="Wpisz nazwę parku"
-          />
-          <datalist id="wyszukaj_park" required></datalist>
-          <input type="submit" class="button_wyszukania" value="Wyszukaj" />
-          <div class="odpowiedz_select" id="odpowiedz_select">
-            <div><p></p></div>
-          </div>
-        </form>
-      </div>
-      <div class="prawy">
-        <button class="dodaj"><a href="ogloszenia_dodaj.html">Dodaj</a></button>
-        <button class="edytuj">
-          <a href="ogloszenia_edytuj.html">Edytuj</a>
-        </button>
-      </div>
-    </div>
+    <div class="srodek"></div>
     <div class="pasek_dolny"></div>
     <div class="tlo">
       <img class="lisc" src="svg/leaf.svg" />
     </div>
     <script>
+      const parametr = new URLSearchParams(window.location.search);
+      var id = parametr.get("id");
+      console.log(id);
       var wyszukaj = document.getElementById("wyszukaj");
 
-      var adres = "http://localhost/projekt/form_wyszukaj.php?wildcard=";
+      var adres = `http://localhost/projekt/form_wyszukaj_info.php?id=${id}`;
       async function pobierz_dla_tekstu(tekst) {
         console.log(adres + tekst);
         $adres_caly = adres + tekst;
@@ -60,29 +43,19 @@
         const response = await a.json();
         console.log(response);
 
-        var value = document.getElementById("odpowiedz_select");
-        if (value != null) {
-          while (value.lastElementChild) {
-            value.removeChild(value.lastElementChild);
-          }
-        }
         response.forEach((element, index, self) => {
           var option = document.createElement("div");
-          option.onclick = () => {
-            window.location.href = `http://localhost/projekt/ogloszenia_informacja.html?id=${element.id}`;
-          };
-          option.innerHTML = `${element.title} (${element.name})`;
+          option.className = "info";
+          option.innerHTML = `<p>Tytuł: ${element.title} </p><p>Które odbywać się będzie w: ${element.name} </p><p>Dnia: ${element.date} </p><p>Szczegółowy opis: ${element.description}</p>`;
+          var value = document.querySelector(".srodek");
+          console.log(value);
 
-          var value = document.getElementById("odpowiedz_select");
           value.appendChild(option);
           //document.getElementById("parks").appendChild(option);
           console.log(element);
         });
       }
       pobierz_dla_tekstu("");
-      wyszukaj.addEventListener("keyup", async (wypisz) => {
-        pobierz_dla_tekstu(wyszukaj.value);
-      });
     </script>
   </body>
 </html>

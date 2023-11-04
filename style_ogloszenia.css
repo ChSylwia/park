@@ -3,6 +3,7 @@ div.menu li.ogloszenia {
   background-color: #3c6255;
 }
 #wyszukaj {
+  padding: 5px;
   background-color: #d0d4ca;
   width: 60vw;
   height: 3vw;
@@ -13,6 +14,20 @@ div.menu li.ogloszenia {
 div.lewy {
   width: 80vw;
 }
+
+div.odpowiedz_select div {
+  float: left;
+  background-color: #d0d4ca;
+  margin: 5px;
+  padding: 5px;
+  width: 70vw;
+  font-size: 20px;
+  color: #1c315e;
+  border: #d0d4ca;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
 div.prawy {
   right: 5vw;
   width: 20vw;
@@ -26,8 +41,9 @@ div.prawy {
   color: #e6e2c3;
   border-radius: 20px;
 }
-button.dodaj {
+.prawy button {
   float: right;
+  margin: 5px;
   width: 15vw;
   height: 3vw;
   font-size: 20px;
@@ -36,7 +52,7 @@ button.dodaj {
   color: #e6e2c3;
   border-radius: 20px;
 }
-button.dodaj a {
+button a {
   color: #e6e2c3;
   text-decoration: none;
 }

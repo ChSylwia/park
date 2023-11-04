@@ -5,9 +5,10 @@
   float: left;
   background-color: #d0d4ca;
   margin: 5px;
-
+  padding: 5px;
   width: 70vw;
   height: 3vw;
+
   border: #d0d4ca;
   border-radius: 20px;
 }
@@ -15,7 +16,7 @@
   width: 32vw;
 }
 #opis {
-  height: 40vh;
+  height: 30vh;
 }
 #input_dodawanie {
   text-align: center;

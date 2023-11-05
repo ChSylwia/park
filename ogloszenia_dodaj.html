@@ -17,7 +17,7 @@
     <title>Parki</title>
   </head>
   <body>
-    <img class="logo" src="svg/logo.svg" />
+    <a href="index.html"><img class="logo" src="svg/logo.svg" /></a>
     <div class="menu">
       <ul>
         <li class="ogloszenia"><a href="ogloszenia.html">Ogłoszenia</a></li>
@@ -61,11 +61,9 @@
       var adres = "http://localhost/projekt/park_wyszukaj.php?wildcard=";
 
       park.addEventListener("keyup", async (wypisz) => {
-        console.log(adres + park.value);
         var adres_caly = adres + park.value;
         const a = await fetch(adres_caly);
         const response = await a.json();
-        console.log(response);
         var value = document.getElementById("parks");
         if (value != null) {
           while (value.lastElementChild) {
@@ -79,7 +77,7 @@
           var value = document.getElementById("parks");
           value.appendChild(option);
           //document.getElementById("parks").appendChild(option);
-          console.log(element["name"] + " " + index + " " + self);
+          //console.log(element["name"] + " " + index + " " + self);
         });
       });
     </script>

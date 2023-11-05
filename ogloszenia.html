@@ -15,7 +15,7 @@
     <title>Parki</title>
   </head>
   <body>
-    <img class="logo" src="svg/logo.svg" />
+    <a href="index.html"><img class="logo" src="svg/logo.svg" /></a>
     <div class="menu">
       <ul>
         <li class="ogloszenia"><a href="ogloszenia.html">Ogłoszenia</a></li>
@@ -25,6 +25,12 @@
     </div>
     <div class="srodek">
       <div class="lewy">
+        <div class="pasek_opcji">
+          <p>Wyszukiwarka ogłoszeń</p>
+          <button class="dodaj">
+            <a href="ogloszenia_dodaj.html">Dodaj</a>
+          </button>
+        </div>
         <form method="post" action="form_wyszukaj.php">
           <input
             id="wyszukaj"
@@ -32,17 +38,12 @@
             placeholder="Wpisz nazwę parku"
           />
           <datalist id="wyszukaj_park" required></datalist>
-          <input type="submit" class="button_wyszukania" value="Wyszukaj" />
           <div class="odpowiedz_select" id="odpowiedz_select">
-            <div><p></p></div>
+            <div>
+              <p></p>
+            </div>
           </div>
         </form>
-      </div>
-      <div class="prawy">
-        <button class="dodaj"><a href="ogloszenia_dodaj.html">Dodaj</a></button>
-        <button class="edytuj">
-          <a href="ogloszenia_edytuj.html">Edytuj</a>
-        </button>
       </div>
     </div>
     <div class="pasek_dolny"></div>
@@ -58,7 +59,7 @@
         $adres_caly = adres + tekst;
         const a = await fetch($adres_caly);
         const response = await a.json();
-        console.log(response);
+        //console.log(response);
 
         var value = document.getElementById("odpowiedz_select");
         if (value != null) {
@@ -76,7 +77,7 @@
           var value = document.getElementById("odpowiedz_select");
           value.appendChild(option);
           //document.getElementById("parks").appendChild(option);
-          console.log(element);
+          //console.log(element);
         });
       }
       pobierz_dla_tekstu("");

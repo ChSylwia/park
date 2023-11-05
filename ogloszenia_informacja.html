@@ -16,7 +16,7 @@
     <title>Parki</title>
   </head>
   <body>
-    <img class="logo" src="svg/logo.svg" />
+    <a href="index.html"><img class="logo" src="svg/logo.svg" /></a>
     <div class="menu">
       <ul>
         <li class="ogloszenia"><a href="ogloszenia.html">Ogłoszenia</a></li>
@@ -24,15 +24,23 @@
         <li class="logowanie"><a href="logowanie.html">Zaloguj się</a></li>
       </ul>
     </div>
-    <div class="srodek"></div>
+    <div class="srodek">
+      <div class="pasek_opcji">
+        <button class="edytuj">
+          <a href="ogloszenia_edytuj.html">Edytuj</a>
+        </button>
+      </div>
+      <div class="zawartosc"></div>
+    </div>
     <div class="pasek_dolny"></div>
+
     <div class="tlo">
       <img class="lisc" src="svg/leaf.svg" />
     </div>
     <script>
       const parametr = new URLSearchParams(window.location.search);
       var id = parametr.get("id");
-      console.log(id);
+      //console.log(id);
       var wyszukaj = document.getElementById("wyszukaj");
 
       var adres = `http://localhost/projekt/form_wyszukaj_info.php?id=${id}`;
@@ -41,18 +49,18 @@
         $adres_caly = adres + tekst;
         const a = await fetch($adres_caly);
         const response = await a.json();
-        console.log(response);
+        //console.log(response);
 
         response.forEach((element, index, self) => {
           var option = document.createElement("div");
           option.className = "info";
           option.innerHTML = `<p>Tytuł: ${element.title} </p><p>Które odbywać się będzie w: ${element.name} </p><p>Dnia: ${element.date} </p><p>Szczegółowy opis: ${element.description}</p>`;
-          var value = document.querySelector(".srodek");
-          console.log(value);
+          var value = document.querySelector(".zawartosc");
+          //console.log(value);
 
           value.appendChild(option);
           //document.getElementById("parks").appendChild(option);
-          console.log(element);
+          //console.log(element);
         });
       }
       pobierz_dla_tekstu("");

@@ -11,11 +11,23 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" type="text/css" href="style_ogloszenia.css" />
     <link rel="stylesheet" type="text/css" href="style_ogloszenia_info.css" />
+    <link rel="stylesheet" type="text/css" href="style_ogloszenia_dodaj.css" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Parki</title>
   </head>
   <body>
+    <?php
+        include 'polaczenie.php';
+        $url = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $parts = parse_url($url);
+        parse_str($parts['query'], $query);
+        $id=$query['id'];
+         $sql="SELECT * FROM announcement WHERE id=${id}";
+        $result = mysqli_query($conn,$sql);
+        $row =  mysqli_fetch_array($result);
+
+    ?>
     <a href="index.html"><img class="logo" src="svg/logo.svg" /></a>
     <div class="menu">
       <ul>
@@ -25,18 +37,41 @@
       </ul>
     </div>
     <div class="srodek">
-      <div class="pasek_opcji">
-        <button class="edytuj" id="button_edytuj" onclick="przejscie()">
-          Edytuj
-        </button>
+      <div class="pasek_opcji"></div>
+      <div class="zawartosc">
+        <form name="formularz_dodawanie" method="post" action="form_edytuj.php">
+          <input
+            type="text"
+            id="tytul"
+            name="tytul"
+            required
+            value="<?php echo  $row['title'] ?>"
+          />
+          <input list="parks" id="park" name="parks" 
+          value="<?php echo  $row['park'] ?>"/>
+          <datalist id="parks" required></datalist>
+
+          <input type="date" id="data" name="data" required  value="<?php echo  $row['date'] ?>"
+/>
+          <textarea
+            type="text"
+            id="opis"
+            name="opis"
+            required
+            cols="80"
+
+          ><?php echo  $row['description'] ?></textarea>
+          <input type="hidden" name="id" value="<?php echo $id ?>" />
+          <input type="submit" id="input_dodawanie" value="Edytuj" />
+        </form>
       </div>
-      <div class="zawartosc"></div>
     </div>
     <div class="pasek_dolny"></div>
 
     <div class="tlo">
       <img class="lisc" src="svg/leaf.svg" />
     </div>
+    
     <script>
       const parametr = new URLSearchParams(window.location.search);
       var id = parametr.get("id");
@@ -52,8 +87,8 @@
         //console.log(response);
 
         response.forEach((element, index, self) => {
-          var option = document.createElement("div");
-          option.className = "info";
+          var option = document.get("div");
+          option.value = "info";
           option.innerHTML = `<p>Tytuł: ${element.title} </p><p>Które odbywać się będzie w: ${element.name} </p><p>Dnia: ${element.date} </p><p>Szczegółowy opis: ${element.description}</p>`;
           var value = document.querySelector(".zawartosc");
           //console.log(value);
@@ -64,10 +99,8 @@
         });
       }
       pobierz_dla_tekstu("");
-
-      function przejscie() {
-        window.location.href = `http://localhost/projekt/ogloszenia_edytuj.php?id=${id}`;
-      }
+         
+      
     </script>
   </body>
 </html>

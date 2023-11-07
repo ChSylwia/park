@@ -4,9 +4,9 @@ div.menu li.ogloszenia {
 }
 #wyszukaj {
   padding: 5px;
+  margin: 5px;
   background-color: #d0d4ca;
   width: 80vw;
-  height: 3vw;
   border: #d0d4ca;
   border-radius: 20px;
 }
@@ -35,8 +35,7 @@ div.odpowiedz_select div {
 button.dodaj {
   float: right;
   margin: 5px;
-  width: 15vw;
-  height: 3vw;
+  width: 10vw;
   font-size: 20px;
   background-color: #88a47c;
   border: #88a47c;
@@ -50,8 +49,10 @@ button a {
 div.pasek_opcji {
   width: 100vw;
   height: 5vw;
+  text-align: center;
 }
 div.pasek_opcji p {
+  font-size: 26px;
   color: #3c6255;
   text-align: center;
   float: left;

@@ -37,7 +37,7 @@
       </ul>
     </div>
     <div class="srodek">
-      <div class="pasek_opcji"></div>
+      
       <div class="zawartosc">
         <form name="formularz_dodawanie" method="post" action="form_edytuj.php">
           <input

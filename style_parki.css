@@ -1,0 +1,46 @@
+div.pasek_dolny {
+  position: fixed;
+  background-color: #88a47c;
+  width: 50vw;
+  height: 5vw;
+  float: left;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+div.menu,
+img.logo {
+  position: fixed;
+  z-index: 1;
+}
+div.lewy {
+  width: 49vw;
+  min-height: 80vh;
+  float: left;
+  scrollbar-color: #3c6255;
+  scrollbar-width: 2px;
+}
+div.prawy {
+  width: 49vw;
+  position: relative;
+  overflow: auto;
+}
+
+p.nazwa {
+  font-size: 1em;
+}
+
+.ikonki {
+  width: 48vw;
+  position: relative;
+  padding: 10px;
+}
+p {
+  font-size: 0.8em;
+  padding: 5px;
+}
+p.nazwa {
+  text-transform: uppercase;
+}
+span {
+  font-weight: bold;
+}

@@ -81,3 +81,15 @@ div.pasek_dolny {
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 }
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #e6e2c3;
+}
+::-webkit-scrollbar-thumb {
+  background: #88a47c;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3c6255;
+}

@@ -15,3 +15,12 @@ button.edytuj {
   color: #e6e2c3;
   border-radius: 20px;
 }
+div.dane {
+  text-align: center;
+}
+p.nazwa {
+  text-transform: uppercase;
+}
+span {
+  font-weight: bold;
+}

@@ -54,7 +54,7 @@
         response.forEach((element, index, self) => {
           var option = document.createElement("div");
           option.className = "info";
-          option.innerHTML = `<p>Tytuł: ${element.title} </p><p>Które odbywać się będzie w: ${element.name} </p><p>Dnia: ${element.date} </p><p>Szczegółowy opis: ${element.description}</p>`;
+          option.innerHTML = `<p class="nazwa"> ${element.title} </p><p><span>Odbędzie się w: </span>${element.name} </p><p><span>Dnia: </span>${element.date} </p><p><span>Szczegółowy opis:</br> </span>${element.description}</p>`;
           var value = document.querySelector(".zawartosc");
           //console.log(value);
 

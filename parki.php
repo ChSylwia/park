@@ -17,7 +17,7 @@
   <body>
     <?php 
     include 'polaczenie.php';
-    $id=4;
+    $id=$_GET['id'];
      $sql="SELECT * FROM park WHERE id=${id} ";
     $result = mysqli_query($conn,$sql);
     $row =  mysqli_fetch_array($result); 
@@ -32,9 +32,8 @@
     </div>
     <div class="srodek">
       <div class="lewy">
-        <a href="parki.php">        
-        <img class="mapa" src="svg/map.svg" />
-        </a>
+        <div class="wypelnienie">
+        </div>
       </div>
       <div class="prawy">
         <p class='nazwa'>
@@ -80,5 +79,33 @@
       </div>
     </div>
     <div class="pasek_dolny"></div>
+
+    <script>
+      const parametr = new URLSearchParams(window.location.search);
+      var miasto = parametr.get("miasto");
+      console.log(miasto);
+      var wyszukaj = document.getElementById("wyszukaj");
+
+      var adres = `http://localhost/projekt/park_wypisz.php?miasto=${miasto}`;
+      async function pobierz_dla_tekstu(tekst) {
+        console.log(adres + tekst);
+        $adres_caly = adres + tekst;
+        const a = await fetch($adres_caly);
+        const response = await a.json();
+        console.log(response);
+
+        response.forEach((element, index, self) => {
+          var option = document.createElement("div");
+          option.innerHTML = `<a href="parki.php?miasto=${miasto}&id=${element.id}"><p>${element.name}</p></a>`;
+          var value = document.querySelector(".wypelnienie");
+          console.log(value);
+
+          value.appendChild(option);
+          //document.getElementById("parks").appendChild(option);
+          //console.log(element);
+        });
+      }
+      pobierz_dla_tekstu('');
+    </script>
   </body>
 </html>

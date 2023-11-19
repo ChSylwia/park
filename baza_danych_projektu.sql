@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Lis 02, 2023 at 09:49 AM
--- Wersja serwera: 10.4.28-MariaDB
+-- Generation Time: Lis 18, 2023 at 05:46 PM
+-- Wersja serwera: 11.1.2-MariaDB
 -- Wersja PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -33,7 +33,7 @@ CREATE TABLE `announcement` (
   `park` int(11) NOT NULL,
   `date` date NOT NULL,
   `description` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
 --
 -- Dumping data for table `announcement`
@@ -54,7 +54,7 @@ INSERT INTO `announcement` (`id`, `title`, `park`, `date`, `description`) VALUES
 CREATE TABLE `city` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
 --
 -- Dumping data for table `city`
@@ -86,7 +86,7 @@ CREATE TABLE `park` (
   `link` varchar(255) DEFAULT NULL,
   `pet_friendly` int(11) DEFAULT NULL,
   `suitable_for_children` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
 --
 -- Dumping data for table `park`
@@ -108,6 +108,48 @@ INSERT INTO `park` (`id`, `name`, `city`, `surface`, `creation_date`, `attractio
 (13, 'Gostynińsko-Włocławski Park Krajobrazowy', 2, 38950.00, '1979-04-05', 'Leśny park krajobrazowy z wydmami śródlądowymi, jeziorami, w których latem można się kąpać, i mokradłami znanymi z ptactwa. Na terenie parku znajduje się wiele obiektów chronionych, np. dąb Jan, którego wiek szacuje się na 300 lat.', 'https://parki.kujawsko-pomorskie.pl/gwpk', 1, 1),
 (14, 'Brudzeński Park Krajobrazowy', 2, 3171.00, '1988-06-09', 'Leży na prawym brzegu Wisły na północny zachód od Płocka i obejmuje przyujściowy (dolny) odcinek Skrwy Prawej oraz przylegające do niego kompleksy leśne.\r\nNa terenie Brudzeńskiego Parku Krajobrazowego znajdują się 3 rezerwaty przyrody:\r\n• Rezerwat krajobrazowy „Sikórz” o powierzchni 215,87 ha, obejmujący 12- kilometrowy odcinek doliny Skrwy od miejscowości Sikórz do wsi Radotki ;\r\n• Rezerwat krajobrazowy-leśny „Brwilno” o powierzchni 65,68 ha, położony w południowej części Parku, na wschód od ujścia Skrwy Prawej;\r\n• Rezerwat krajobrazowy „Brudzeńskie Jary” o powierzchni 39,10 ha, obejmuje uroczysko leśne Brudzeń w północnej części Parku.', 'http://brudzen.pl/strona/brudzenski-park-krajobrazowy', 1, 1),
 (15, 'Rezerwat przyrody Dąbrowa Łącka', 2, 304.83, '1990-08-29', 'Celem ochrony rezerwatu jest zachowanie licznych zbiorowisk roślinnych o charakterze naturalnym, obejmującym bory mieszane, grądy, łęgi, olsy, jak też obszar jeziora Łąckiego Małego oraz urozmaiconą rzeźbę terenu. Przedmiotem ochrony są rkosystemy leśne, bagienne i jeziorowe.', 'https://pl.wikipedia.org/wiki/Rezerwat_przyrody_Dąbrowa_Łącka', NULL, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `session`
+--
+
+CREATE TABLE `session` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `session`
+--
+
+INSERT INTO `session` (`id`, `user_id`) VALUES
+(1, 1),
+(2, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `surname` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` binary(60) NOT NULL,
+  `is_admin` bit(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `name`, `surname`, `email`, `password`, `is_admin`) VALUES
+(1, 'Jan', 'Kowalski', 'jan.kowalski@example.com', 0x2432792431302455484f324941342e325431445a3832774269366a5a75747a46536e304650427a3656566e665633364f474d44697457686c4a315943, b'1'),
+(2, '', '', 'anna.nowak@example.com', 0x24327924313024532f562e376877475a4e3235734c754f466d7a752e4f5561696c49494844796637366f5630626f746441783662554a2f77326a6a2e, b'0');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -134,6 +176,19 @@ ALTER TABLE `park`
   ADD KEY `city` (`city`);
 
 --
+-- Indeksy dla tabeli `session`
+--
+ALTER TABLE `session`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indeksy dla tabeli `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -156,6 +211,18 @@ ALTER TABLE `park`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
+-- AUTO_INCREMENT for table `session`
+--
+ALTER TABLE `session`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -170,6 +237,12 @@ ALTER TABLE `announcement`
 --
 ALTER TABLE `park`
   ADD CONSTRAINT `park_ibfk_1` FOREIGN KEY (`city`) REFERENCES `city` (`id`);
+
+--
+-- Constraints for table `session`
+--
+ALTER TABLE `session`
+  ADD CONSTRAINT `session_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -14,6 +14,7 @@ div {
 }
 div.menu {
   width: 100vw;
+  height: 5vh;
   text-align: center;
   color: #e6e2c3;
   text-transform: none;
@@ -65,10 +66,10 @@ div.prawy {
 }
 img.logo {
   position: absolute;
-  height: 5vw;
-  margin: 5px;
+  height: calc(5vw - 5px);
+  margin: 5px 0 0 5px;
 }
-img.mapa {
+svg {
   width: 30vw;
 }
 div.pasek_dolny {
@@ -92,4 +93,7 @@ div.pasek_dolny {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #3c6255;
+}
+a path:hover {
+  fill: pink;
 }

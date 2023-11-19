@@ -4,9 +4,9 @@ div.menu li.ogloszenia {
 }
 #wyszukaj {
   padding: 5px;
-  margin: 5px;
   background-color: #d0d4ca;
   width: 80vw;
+  height: 6vh;
   border: #d0d4ca;
   border-radius: 20px;
 }
@@ -53,10 +53,10 @@ div.pasek_opcji {
 }
 div.pasek_opcji p {
   font-size: 26px;
+  width: 80vw;
   color: #3c6255;
   text-align: center;
   float: left;
-  width: 80vw;
 }
 div.tlo {
   position: absolute;

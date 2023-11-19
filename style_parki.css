@@ -16,8 +16,7 @@ div.lewy {
   width: 49vw;
   min-height: 80vh;
   float: left;
-  scrollbar-color: #3c6255;
-  scrollbar-width: 2px;
+  overflow: auto;
 }
 div.prawy {
   width: 49vw;
@@ -43,4 +42,19 @@ p.nazwa {
 }
 span {
   font-weight: bold;
+}
+.wypelnienie div {
+  background-color: #d0d4ca;
+  margin: 5px;
+  padding: 5px;
+  width: 40vw;
+  font-size: 20px;
+  color: #1c315e;
+  border: #d0d4ca;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.wypelnienie a {
+  text-decoration: none;
+  color: #1c315e;
 }

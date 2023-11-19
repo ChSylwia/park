@@ -3,7 +3,6 @@ p {
   text-align: center;
   padding: 5px;
 }
-
 button.edytuj {
   float: right;
   margin: 5px;
@@ -14,4 +13,14 @@ button.edytuj {
   border: #88a47c;
   color: #e6e2c3;
   border-radius: 20px;
+}
+div.dane {
+  padding: 5px;
+  text-align: center;
+}
+p.nazwa {
+  text-transform: uppercase;
+}
+span {
+  font-weight: bold;
 }

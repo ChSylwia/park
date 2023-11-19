@@ -69,7 +69,7 @@ img.logo {
   height: calc(5vw - 5px);
   margin: 5px 0 0 5px;
 }
-img.mapa {
+svg {
   width: 30vw;
 }
 div.pasek_dolny {
@@ -93,4 +93,7 @@ div.pasek_dolny {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #3c6255;
+}
+a path:hover {
+  fill: pink;
 }

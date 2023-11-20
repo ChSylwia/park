@@ -2,8 +2,37 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="style_logowanie.css" />
+    <link href="polaczenie.php" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Parki</title>
   </head>
-  <body></body>
+  <body>
+    <a href="index.html"><img class="logo" src="svg/logo.svg" /></a>
+    <div class="menu">
+      <ul>
+        <li class="ogloszenia"><a href="ogloszenia.html">Ogłoszenia</a></li>
+        <li class="opinie"><a href="opinie.html">Opinie</a></li>
+        <li class="logowanie"><a href="logowanie.html">Zaloguj się</a></li>
+      </ul>
+    </div>
+    <div class="srodek">
+      <div class="lewy">
+        <p>Zaloguj lub zarejestruj się</p>
+        <form action="logowanie.php" method="post">
+          <input type="email" name="email" required placeholder="E-mail" />
+          <input type="password" name="haslo" required placeholder="Hasło" />
+          <input type="submit" id="zaloguj" value="Zaloguj/Zarejestruj się" />
+        </form>
+      </div>
+    </div>
+    <div class="pasek_dolny"></div>
+  </body>
 </html>

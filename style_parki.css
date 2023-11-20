@@ -58,3 +58,10 @@ span {
   text-decoration: none;
   color: #1c315e;
 }
+a.link_ogl {
+  text-decoration: none;
+  color: #1c315e;
+}
+a.link_ogl:hover {
+  color: #88a47c;
+}

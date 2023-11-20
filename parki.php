@@ -18,9 +18,19 @@
     <?php 
     include 'polaczenie.php';
     $id=$_GET['id'];
-     $sql="SELECT * FROM park WHERE id=${id} ";
+    $miasto=$_GET['miasto'];
+    if($id==0){
+      $sql2="SELECT id FROM park WHERE city=${miasto} limit 1";
+      $result2 = mysqli_query($conn,$sql2);
+      $row2 =  mysqli_fetch_array($result2); 
+
+      $id=$row2['id'];
+    }
+    $sql="SELECT * FROM park WHERE id=${id} ";
     $result = mysqli_query($conn,$sql);
     $row =  mysqli_fetch_array($result); 
+  
+    
     ?>
     <a href="index.html"><img class="logo" src="svg/logo.svg" /></a>
     <div class="menu">
@@ -38,6 +48,7 @@
       <div class="prawy">
         <p class='nazwa'>
             <?php
+            $nazwa=$row['name'];
             echo $row['name'];
               ?>
         </p>
@@ -68,14 +79,17 @@
             <?php
             $przyjazne= $row['pet_friendly'];
             if($przyjazne==1){
-                echo "<img src='svg/zwierzak.svg'/> ";
+                echo "<img title='Dostosowane do zwierząt' src='svg/zwierzak.svg'/> ";
             }
             $przyjazne2= $row['suitable_for_children'];
             if($przyjazne2==1){
-                echo "<img src='svg/dziecko.svg'/> ";
+                echo "<img title='Przystosowane dla dzieci' src='svg/dziecko.svg'/> ";
             }
               ?>
         </div>
+        <div class="linki">
+          <p><?php echo "<a class='link_ogl' href='ogloszenia.html?nazwa=${nazwa}'>Ogłoszenia</a>" ?></p>
+          </div>
       </div>
     </div>
     <div class="pasek_dolny"></div>

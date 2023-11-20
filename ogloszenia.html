@@ -52,7 +52,8 @@
     </div>
     <script>
       var wyszukaj = document.getElementById("wyszukaj");
-
+      const parametr = new URLSearchParams(window.location.search);
+      var nazwa = parametr.get("nazwa");
       var adres = "http://localhost/projekt/form_wyszukaj.php?wildcard=";
       async function pobierz_dla_tekstu(tekst) {
         console.log(adres + tekst);
@@ -80,7 +81,7 @@
           //console.log(element);
         });
       }
-      pobierz_dla_tekstu("");
+      pobierz_dla_tekstu(nazwa);
       wyszukaj.addEventListener("keyup", async (wypisz) => {
         pobierz_dla_tekstu(wyszukaj.value);
       });

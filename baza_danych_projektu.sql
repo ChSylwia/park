@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Lis 18, 2023 at 05:46 PM
--- Wersja serwera: 11.1.2-MariaDB
--- Wersja PHP: 8.2.4
+-- Generation Time: Lis 21, 2023 at 04:23 PM
+-- Wersja serwera: 10.4.28-MariaDB
+-- Wersja PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,7 +33,7 @@ CREATE TABLE `announcement` (
   `park` int(11) NOT NULL,
   `date` date NOT NULL,
   `description` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `announcement`
@@ -54,7 +54,7 @@ INSERT INTO `announcement` (`id`, `title`, `park`, `date`, `description`) VALUES
 CREATE TABLE `city` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `city`
@@ -73,6 +73,30 @@ INSERT INTO `city` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `opinie`
+--
+
+CREATE TABLE `opinie` (
+  `id` int(11) NOT NULL,
+  `id_park` int(11) NOT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `opinia` text NOT NULL,
+  `user` text DEFAULT NULL,
+  `date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `opinie`
+--
+
+INSERT INTO `opinie` (`id`, `id_park`, `id_user`, `opinia`, `user`, `date`) VALUES
+(1, 1, NULL, 'Tak bardzo fajny jest ten park', NULL, '2023-11-21 16:19:02'),
+(2, 4, NULL, 'Ten trochę też', NULL, '2023-11-21 16:20:04'),
+(3, 13, NULL, 'AAAAAAAAAAAA\r\n\r\n\r\nWWWWW', NULL, '2023-11-21 16:20:14');
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `park`
 --
 
@@ -86,7 +110,7 @@ CREATE TABLE `park` (
   `link` varchar(255) DEFAULT NULL,
   `pet_friendly` int(11) DEFAULT NULL,
   `suitable_for_children` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `park`
@@ -126,7 +150,8 @@ CREATE TABLE `session` (
 
 INSERT INTO `session` (`id`, `user_id`) VALUES
 (1, 1),
-(2, 2);
+(2, 2),
+(3, 3);
 
 -- --------------------------------------------------------
 
@@ -149,7 +174,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `name`, `surname`, `email`, `password`, `is_admin`) VALUES
 (1, 'Jan', 'Kowalski', 'jan.kowalski@example.com', 0x2432792431302455484f324941342e325431445a3832774269366a5a75747a46536e304650427a3656566e665633364f474d44697457686c4a315943, b'1'),
-(2, '', '', 'anna.nowak@example.com', 0x24327924313024532f562e376877475a4e3235734c754f466d7a752e4f5561696c49494844796637366f5630626f746441783662554a2f77326a6a2e, b'0');
+(2, '', '', 'anna.nowak@example.com', 0x24327924313024532f562e376877475a4e3235734c754f466d7a752e4f5561696c49494844796637366f5630626f746441783662554a2f77326a6a2e, b'0'),
+(3, '', '', 'adam@wp.pl', 0x24327924313024674b313343676f5a46304b52737239597a48393357754e4144734f6a30762e534c45317665313236615a6c55365739325050763736, b'0');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -166,6 +192,12 @@ ALTER TABLE `announcement`
 -- Indeksy dla tabeli `city`
 --
 ALTER TABLE `city`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeksy dla tabeli `opinie`
+--
+ALTER TABLE `opinie`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -205,6 +237,12 @@ ALTER TABLE `city`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `opinie`
+--
+ALTER TABLE `opinie`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `park`
 --
 ALTER TABLE `park`
@@ -214,13 +252,13 @@ ALTER TABLE `park`
 -- AUTO_INCREMENT for table `session`
 --
 ALTER TABLE `session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

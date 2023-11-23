@@ -9,7 +9,7 @@
     while($c = mysqli_fetch_array($res)){
 ?>
     
-    <?php    echo "<div class='opiniaa'><p>"; ?>
+    <?php    echo "<div class='opiniaa'>"; ?>
     <input type="hidden" id="id" name="id" value="<?php echo $c['id'] ?>" />
     <p id="name">
     <?php    echo $c['name']."<br>";?>
@@ -19,9 +19,9 @@
     </p>
     <textarea id="opinia" type="text" name="opinia" disabled><?=$c['opinia']?></textarea>
     <div id="edytuj">
-    <button type="button" id="Edit_button" class="dodaj" onclick="editForm()" >Edytuj</button>
+    <button type="button" id="Edit_button" class="dodaj" >Edytuj</button>
     </div>
-    <?php    echo "</p></div>";?>
+    <?php    echo "</div>";?>
     
     
 <?php
@@ -31,10 +31,12 @@
 
 
 <script>
+    var buttons = document.querySelectorAll('#Edit_button');
     function editForm() {
-        var opinia = document.getElementById("opinia");
-        var id_opinia = document.getElementById("id");
-        var button = document.getElementById("Edit_button");
+        var parent = this.parentElement.parentElement;
+        var opinia = parent.querySelector("#opinia");
+        var id_opinia = parent.querySelector("#id");
+        var button = this;
         if(opinia.disabled==false) {
             opinia.disabled = true;
             button.innerHTML = "Edytuj";
@@ -57,5 +59,8 @@
             opinia.disabled = false;
             button.innerHTML = 'Zapisz';
         }
+    } 
+    for(var i = 0; i<buttons.length; i++){
+        buttons[i].addEventListener('click',editForm);
     }
 </script>

@@ -32,6 +32,8 @@ function getOpinia($conn){
     <link href="polaczenie.php" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Parki</title>
+    <script type="text/javascript" src="http://localhost/projekt/Func_opinie_drop.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   </head>
 
 
@@ -45,7 +47,14 @@ function getOpinia($conn){
       </ul>
     </div>
 
-    <div class="srodek">
+
+
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+
+<div class="srodek">
       <div class="lewy">
         <div class="pasek_gora">
           <p>Opinie</p>
@@ -53,10 +62,10 @@ function getOpinia($conn){
             <a href="opiniee_dodaj.php">Dodaj</a>
           </button>
           <div>
-           <select id="drop" name="park">
+           <select id="drop" name="park" onchange="selectPark()">
                   <?php
                         include('polaczenie.php');
-                        $parki = mysqli_query($conn, "SELECT * from park");
+                        $parki = mysqli_query($conn, "SELECT * from park ");
                         while($c = mysqli_fetch_array($parki)){
                       ?>
                       <option value="<?php echo $c['id'] ?>"><?php echo $c['name']?></option>
@@ -67,14 +76,10 @@ function getOpinia($conn){
       </div>
     </div>
 
-<br></br>
-<br></br>
-<br></br>
-<br></br>
+    <div id="ans"></div>
 
 
 
-<?php getOpinia($conn); ?>
 
 
 

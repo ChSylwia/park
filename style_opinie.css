@@ -37,7 +37,7 @@ button.dodaj {
 
   div.opiniaa {
     width: 100vw;
-    padding: 20px;
+    padding: 35px;
     margin-bottom: 4px;
     background-color: #ECF4D6;
     border-radius: 4px;
@@ -46,7 +46,7 @@ button.dodaj {
 
   div.opiniaa {
     font-family: arial;
-    font-size: 14px;
+    font-size: 20px;
     line-height: 16px;
     color: #282828;
     font-weight: 100;

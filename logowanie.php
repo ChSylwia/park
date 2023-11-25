@@ -1,49 +1,8 @@
 <?php
   include 'polaczenie.php';
+  include 'funkcje_pomocnicze.php';
 
-  function get_first_row($conn, $query) {
-    return mysqli_fetch_row(mysqli_query($conn, $query));
-  }
-
-  function get_first_value($conn, $query) {
-    $array = get_first_row($conn, $query);
-    return is_array($array) ? $array[0] : null;
-  }
-
-  function create_session($conn, $user_id) {
-    $session = get_first_value($conn, "SELECT id FROM session WHERE user_id = $user_id");
-    if (!$session) {
-      mysqli_query($conn, "INSERT INTO session VALUES (NULL, $user_id)");
-    }
-    $row = get_first_row($conn, "SELECT session.id, name, surname, email FROM user JOIN session ON user.id = session.user_id WHERE user.id = $user_id");
-    setcookie('session_id', $row[0]);
-    header('Location: profil.php');
-    die();
-    /*
-    if ($row[1] || $row[2]) {
-      echo "Witaj $row[1] $row[2]<br>";
-    } else {
-      echo "Witaj $row[3]! (nie znamy jeszcze Twojego imienia i nazwiska)<br>";
-    }
-    echo "Sesja nr $row[0]"; // debug
-    */
-  }
-
-  function login_or_register($conn, $email, $password) {
-    $email = mysqli_real_escape_string($conn, $email); // obsługa ' i \
-    $password = mysqli_real_escape_string($conn, $password);
-    $user = get_first_row($conn, "SELECT id, password FROM user WHERE email = '$email'");
-    if ($user) { // użytkownik istnieje
-      if ($password === $user[1]) { // === w celu poprawnego porównywania ciągów znaków
-        create_session($conn, $user[0]);
-      }
-    } else { // użytkownik nie istnieje, zarejestruj go
-      mysqli_query($conn, "INSERT INTO user VALUES (NULL, '', '', '$email', '$password', 0)");
-      create_session($conn, get_first_value($conn, "SELECT id FROM user WHERE email = '$email'"));
-    }
-  }
-
-  $form_filled = true;
+  $form_filled = true; // czy formularz jest wypełniony w całości
   if (empty($_REQUEST['email'])) {
     $email = '';
     $form_filled = false;
@@ -56,8 +15,8 @@
   } else {
     $password = $_REQUEST['password'];
   }
-  if ($form_filled) {
-    login_or_register($conn, $_REQUEST['email'], $_REQUEST['password']);
+  if ($form_filled) { // wyślij formularz tylko wtedy, gdy żadne z pól nie jest puste
+    login_or_register($conn, $email, $password);
   }
 ?>
 

@@ -1,9 +1,6 @@
 <?php
   include 'polaczenie.php';
-
-  function get_first_row($conn, $query) {
-    return mysqli_fetch_row(mysqli_query($conn, $query));
-  }
+  include 'funkcje_pomocnicze.php';
 ?>
 
 <!DOCTYPE html>

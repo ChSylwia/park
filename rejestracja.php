@@ -1,9 +1,23 @@
 <?php
   include 'polaczenie.php';
+  include 'funkcje_pomocnicze.php';
 
-  function get_first_row($conn, $query) {
-    return mysqli_fetch_row(mysqli_query($conn, $query));
+  session_start(); // "rozpoczęcie" (wzięcie) sesji ze strony logowanie.php
+  if (isset($_SESSION['email'])) {
+    $_REQUEST['email'] = $_SESSION['email'];
   }
+  if (isset($_SESSION['password'])) {
+    $_REQUEST['password'] = $_SESSION['password'];
+  }
+
+  if (empty($_REQUEST['email']) || empty($_REQUEST['password'])) {
+    redirect('logowanie.php'); // brak danych - przejdź do głównego formularza logowania
+  }
+  $email = mysqli_real_escape_string($conn, $_REQUEST['email']); // obsługa ' i \
+  $password = mysqli_real_escape_string($conn, $_REQUEST['password']);
+  
+  $_SESSION = [];
+  session_destroy();
 ?>
 
 <!DOCTYPE html>
@@ -28,23 +42,28 @@
       <ul>
         <li class="ogloszenia"><a href="ogloszenia.html">Ogłoszenia</a></li>
         <li class="opinie"><a href="opinie.html">Opinie</a></li>
-        <?php if (isset($_COOKIE['session_id'])): ?>
-          <li class="logowanie">
-            <a href="profil.php">
-              <?php
-                $user = get_first_row($conn, "SELECT name, surname FROM user JOIN session ON user.id = session.user_id WHERE session.id = $_COOKIE[session_id]");
-                echo "$user[0] $user[1]";
-              ?>
-            </a>
-          </li>
-        <?php else: ?>
-          <li class="logowanie"><a href="logowanie.html">Zaloguj się</a></li>
-        <?php endif ?>
+        <li class="logowanie"><?= $email ?></li>
       </ul>
     </div>
     <div class="srodek">
       <div class="lewy">
-        <p>W BUDOWIE!!!</p>
+        <?php if (empty($_REQUEST['name']) || empty($_REQUEST['surname'])): ?>
+          <p><?= "Dokończ rejestrację użytkownika $_REQUEST[email]" ?></p>
+          <form action="rejestracja.php" method="post">
+            <input type="hidden" name="email" value="<?= $_REQUEST['email'] ?>">
+            <input type="hidden" name="password" value="<?= $_REQUEST['password'] ?>">
+            <input type="text" name="name" required placeholder="Imię" />
+            <input type="text" name="surname" required placeholder="Nazwisko" />
+            <input type="submit" id="zaloguj" value="Zarejestruj się" />
+          </form>
+        <?php else: ?>
+          <?php
+            $name = mysqli_real_escape_string($conn, $_REQUEST['name']);
+            $surname = mysqli_real_escape_string($conn, $_REQUEST['surname']);
+            mysqli_query($conn, "INSERT INTO user VALUES (NULL, '$name', '$surname', '$email', '$password', 0)");
+            create_session($conn, get_first_value($conn, "SELECT id FROM user WHERE email = '$email'"));
+          ?>
+        <?php endif ?>
       </div>
     </div>
     <div class="pasek_dolny"></div>

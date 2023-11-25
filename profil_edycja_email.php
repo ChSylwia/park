@@ -5,6 +5,16 @@
   if (empty($_COOKIE['session_id'])) {
     redirect('logowanie.php', $conn);
   }
+
+  $user = get_first_row($conn, "SELECT user.id, email FROM user JOIN session ON user.id = session.user_id WHERE session.id = $_COOKIE[session_id]");
+  $user_id = $user[0];
+  $email = $user[1];
+
+  if (isset($_REQUEST['confirm'])) {
+    $email = mysqli_real_escape_string($conn, $_REQUEST['email']);
+    mysqli_query($conn, "UPDATE user SET email = '$email' WHERE id = $user_id");
+    redirect('profil.php', $conn);
+  }
 ?>
 
 <!DOCTYPE html>
@@ -28,11 +38,12 @@
     <?php include 'naglowek.php' ?>
     <div class="srodek">
       <div class="lewy">
-        <p>Witaj, <?= $full_name ?></p>
-        <a class="opcja" href="profil_edycja_imie_nazwisko.php">Zmień imię/nazwisko</a>
-        <a class="opcja" href="profil_edycja_email.php">Zmień e-mail</a>
-        <a class="opcja" href="profil_edycja_haslo.php">Zmień hasło</a>
-        <a class="opcja" href="wyloguj.php">Wyloguj się</a>
+        <p>Zmień e-mail</p>
+        <form method="post">
+          <input type="email" name="email" value="<?= $email ?>" required placeholder="E-mail" />
+          <input type="hidden" name="confirm" />
+          <input type="submit" id="zaloguj" value="Potwierdź zmianę" />
+        </form>
       </div>
     </div>
     <div class="pasek_dolny"></div>

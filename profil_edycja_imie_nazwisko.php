@@ -5,6 +5,14 @@
   if (empty($_COOKIE['session_id'])) {
     redirect('logowanie.php', $conn);
   }
+
+  if (isset($_REQUEST['confirm'])) {
+    $user_id = get_first_value($conn, "SELECT user.id FROM user JOIN session ON user.id = session.user_id WHERE session.id = $_COOKIE[session_id]");
+    $name = mysqli_real_escape_string($conn, $_REQUEST['name']);
+    $surname = mysqli_real_escape_string($conn, $_REQUEST['surname']);
+    mysqli_query($conn, "UPDATE user SET name = '$name', surname = '$surname' WHERE id = $user_id");
+    redirect('profil.php', $conn);
+  }
 ?>
 
 <!DOCTYPE html>
@@ -28,11 +36,13 @@
     <?php include 'naglowek.php' ?>
     <div class="srodek">
       <div class="lewy">
-        <p>Witaj, <?= $full_name ?></p>
-        <a class="opcja" href="profil_edycja_imie_nazwisko.php">Zmień imię/nazwisko</a>
-        <a class="opcja" href="profil_edycja_email.php">Zmień e-mail</a>
-        <a class="opcja" href="profil_edycja_haslo.php">Zmień hasło</a>
-        <a class="opcja" href="wyloguj.php">Wyloguj się</a>
+        <p>Zmień imię i nazwisko</p>
+        <form method="post">
+          <input type="text" name="name" value="<?= $name ?>" required placeholder="Imię" />
+          <input type="text" name="surname" value="<?= $surname ?>" required placeholder="Nazwisko" />
+          <input type="hidden" name="confirm" />
+          <input type="submit" id="zaloguj" value="Potwierdź zmianę" />
+        </form>
       </div>
     </div>
     <div class="pasek_dolny"></div>

@@ -2,6 +2,10 @@
   include 'polaczenie.php';
   include 'funkcje_pomocnicze.php';
 
+  if (isset($_COOKIE['session_id'])) { // użytkownik jest już zalogowany
+    redirect('profil.php');
+  }
+
   $form_filled = true; // czy formularz jest wypełniony w całości
   if (empty($_REQUEST['email'])) {
     $email = '';
@@ -42,18 +46,7 @@
       <ul>
         <li class="ogloszenia"><a href="ogloszenia.html">Ogłoszenia</a></li>
         <li class="opinie"><a href="opinie.html">Opinie</a></li>
-        <?php if (isset($_COOKIE['session_id'])): ?>
-          <li class="logowanie">
-            <a href="profil.php">
-              <?php
-                $user = get_first_row($conn, "SELECT name, surname FROM user JOIN session ON user.id = session.user_id WHERE session.id = $_COOKIE[session_id]");
-                echo "$user[0] $user[1]";
-              ?>
-            </a>
-          </li>
-        <?php else: ?>
-          <li class="logowanie"><a href="logowanie.html">Zaloguj się</a></li>
-        <?php endif ?>
+        <li class="logowanie"><a href="logowanie.php">Zaloguj się</a></li>
       </ul>
     </div>
     <div class="srodek">

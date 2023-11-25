@@ -11,10 +11,8 @@
   }
 
   if (empty($_REQUEST['email']) || empty($_REQUEST['password'])) {
-    redirect('logowanie.php'); // brak danych - przejdź do głównego formularza logowania
+    redirect('logowanie.php', $conn); // brak danych - przejdź do głównego formularza logowania
   }
-  $email = mysqli_real_escape_string($conn, $_REQUEST['email']); // obsługa ' i \
-  $password = mysqli_real_escape_string($conn, $_REQUEST['password']);
   
   $_SESSION = [];
   session_destroy();
@@ -49,15 +47,17 @@
       <div class="lewy">
         <?php if (empty($_REQUEST['name']) || empty($_REQUEST['surname'])): ?>
           <p><?= "Dokończ rejestrację użytkownika $_REQUEST[email]" ?></p>
-          <form action="rejestracja.php" method="post">
-            <input type="hidden" name="email" value="<?= $_REQUEST['email'] ?>">
-            <input type="hidden" name="password" value="<?= $_REQUEST['password'] ?>">
+          <form method="post">
+            <input type="hidden" name="email" value="<?= $email ?>" />
+            <input type="hidden" name="password" value="<?= $password ?>" />
             <input type="text" name="name" required placeholder="Imię" />
             <input type="text" name="surname" required placeholder="Nazwisko" />
             <input type="submit" id="zaloguj" value="Zarejestruj się" />
           </form>
         <?php else: ?>
           <?php
+            $email = mysqli_real_escape_string($conn, $_REQUEST['email']); // obsługa ' i \
+            $password = mysqli_real_escape_string($conn, $_REQUEST['password']);
             $name = mysqli_real_escape_string($conn, $_REQUEST['name']);
             $surname = mysqli_real_escape_string($conn, $_REQUEST['surname']);
             mysqli_query($conn, "INSERT INTO user VALUES (NULL, '$name', '$surname', '$email', '$password', 0)");

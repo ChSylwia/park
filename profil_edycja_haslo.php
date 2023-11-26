@@ -41,7 +41,7 @@
     <title>Parki</title>
   </head>
   <body>
-    <a href="index.html"><img class="logo" src="svg/logo.svg" /></a>
+    <a href="index.php"><img class="logo" src="svg/logo.svg" /></a>
     <?php include 'naglowek.php' ?>
     <div class="srodek">
       <div class="lewy">

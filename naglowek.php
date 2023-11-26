@@ -1,7 +1,7 @@
 <div class="menu">
   <ul>
-    <li class="ogloszenia"><a href="ogloszenia.html">Ogłoszenia</a></li>
-    <li class="opinie"><a href="opinie.html">Opinie</a></li>
+    <li class="ogloszenia"><a href="ogloszenia.php">Ogłoszenia</a></li>
+    <li class="opinie"><a href="opinie.php">Opinie</a></li>
     <?php if (isset($_COOKIE['session_id'])): ?>
       <li class="logowanie">
         <a href="profil.php">

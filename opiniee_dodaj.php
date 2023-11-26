@@ -1,5 +1,6 @@
 <?php
     include('polaczenie.php');
+    include('funkcje_pomocnicze.php');
     if(isset($_POST['submit'])){
       $opis = $_POST['opis'];
       $park = $_POST['park'];
@@ -39,13 +40,7 @@
 
   <body>
     <a href="index.html"><img class="logo" src="svg/logo.svg" /></a>
-    <div class="menu">
-      <ul>
-        <li class="ogloszenia"><a href="ogloszenia.html">Ogłoszenia</a></li>
-        <li class="opinie"><a href="opinie.php">Opinie</a></li>
-        <li class="logowanie"><a href="logowanie.html">Zaloguj się</a></li>
-      </ul>
-    </div>
+    <?php include 'naglowek.php' ?>
     <div class="srodek">
         <div class="lewy">
           

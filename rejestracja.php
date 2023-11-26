@@ -40,8 +40,8 @@
     <a href="index.html"><img class="logo" src="svg/logo.svg" /></a>
     <div class="menu">
       <ul>
-        <li class="ogloszenia"><a href="ogloszenia.html">Ogłoszenia</a></li>
-        <li class="opinie"><a href="opinie.html">Opinie</a></li>
+        <li class="ogloszenia"><a href="ogloszenia.php">Ogłoszenia</a></li>
+        <li class="opinie"><a href="opinie.php">Opinie</a></li>
         <li class="logowanie"><?= $email ?></li>
       </ul>
     </div>

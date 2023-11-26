@@ -1,5 +1,6 @@
 <?php
 include('polaczenie.php');
+include('funkcje_pomocnicze.php');
 function getOpinia($conn){
     $sql = "SELECT * FROM opinie inner join park on park.id = opinie.id_park";
     $result = $conn->query($sql);
@@ -38,14 +39,8 @@ function getOpinia($conn){
 
 
   <body>
-    <a href="index.html"><img class="logo" src="svg/logo.svg" /></a>
-    <div class="menu">
-      <ul>
-        <li class="ogloszenia"><a href="ogloszenia.html">Ogłoszenia</a></li>
-        <li class="opinie"><a href="opinie.php">Opinie</a></li>
-        <li class="logowanie"><a href="logowanie.html">Zaloguj się</a></li>
-      </ul>
-    </div>
+    <a href="index.php"><img class="logo" src="svg/logo.svg" /></a>
+    <?php include 'naglowek.php' ?>
 
 
 

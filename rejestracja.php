@@ -13,6 +13,8 @@
   if (empty($_REQUEST['email']) || empty($_REQUEST['password'])) {
     redirect('logowanie.php', $conn); // brak danych - przejdź do głównego formularza logowania
   }
+
+  $email = $_REQUEST['email']; // obsługa ' i \
   
   $_SESSION = [];
   session_destroy();

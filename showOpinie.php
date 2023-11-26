@@ -12,7 +12,8 @@
     <?php    echo "<div class='opiniaa'>"; ?>
     <input type="hidden" id="id" name="id" value="<?php echo $c['id'] ?>" />
     <p id="name">
-    <?php    echo $c['name']."<br>";?>
+    <?php    echo $c['name'];?>
+    <?php    echo $c['surname']."<br>";?>
     </p>
     <p id="data">
     <?php    echo $c['date']."<br>";?>

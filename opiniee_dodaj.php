@@ -1,6 +1,7 @@
 <?php
     include('polaczenie.php');
     include('funkcje_pomocnicze.php');
+
     if(isset($_POST['submit'])){
       $opis = $_POST['opis'];
       $park = $_POST['park'];
@@ -12,8 +13,6 @@
         echo "<script> alert('Błąd')  </script>";
       }
     }
-
-
 ?>
 
 <!DOCTYPE html>

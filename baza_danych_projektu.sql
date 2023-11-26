@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Lis 24, 2023 at 10:55 PM
+-- Generation Time: Lis 26, 2023 at 01:05 PM
 -- Wersja serwera: 11.1.2-MariaDB
 -- Wersja PHP: 8.2.4
 
@@ -144,15 +144,6 @@ CREATE TABLE `session` (
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `session`
---
-
-INSERT INTO `session` (`id`, `user_id`) VALUES
-(1, 1),
-(2, 2),
-(3, 3);
-
 -- --------------------------------------------------------
 
 --
@@ -174,8 +165,9 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `name`, `surname`, `email`, `password`, `is_admin`) VALUES
 (1, 'Jan', 'Kowalski', 'jan.kowalski@example.com', '123456', b'1'),
-(2, '', '', 'anna.nowak@example.com', 'password', b'0'),
-(3, '', '', 'adam@wp.pl', 'Mazowiecka123!@', b'0');
+(2, 'Anna', 'Nowak', 'anna.nowak@example.com', 'password', b'0'),
+(3, 'Adam', 'Nowakowski', 'adam@wp.pl', 'Mazowiecka123!@', b'0'),
+(4, 'Adam', 'Nowak', 'adam.nowak@gmail.com', '123456', b'0');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -252,13 +244,13 @@ ALTER TABLE `park`
 -- AUTO_INCREMENT for table `session`
 --
 ALTER TABLE `session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

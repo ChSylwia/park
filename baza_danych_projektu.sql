@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Lis 26, 2023 at 01:05 PM
+-- Generation Time: Lis 28, 2023 at 07:01 PM
 -- Wersja serwera: 11.1.2-MariaDB
 -- Wersja PHP: 8.2.4
 
@@ -167,7 +167,8 @@ INSERT INTO `user` (`id`, `name`, `surname`, `email`, `password`, `is_admin`) VA
 (1, 'Jan', 'Kowalski', 'jan.kowalski@example.com', '123456', b'1'),
 (2, 'Anna', 'Nowak', 'anna.nowak@example.com', 'password', b'0'),
 (3, 'Adam', 'Nowakowski', 'adam@wp.pl', 'Mazowiecka123!@', b'0'),
-(4, 'Adam', 'Nowak', 'adam.nowak@gmail.com', '123456', b'0');
+(4, 'Adam', 'Nowak', 'adam.nowak@gmail.com', '123456', b'0'),
+(5, 'Ala', 'Makota', 'ala123@wp.pl', '123', b'0');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -244,13 +245,13 @@ ALTER TABLE `park`
 -- AUTO_INCREMENT for table `session`
 --
 ALTER TABLE `session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

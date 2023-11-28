@@ -14,7 +14,8 @@
     redirect('logowanie.php', $conn); // brak danych - przejdź do głównego formularza logowania
   }
 
-  $email = $_REQUEST['email']; // obsługa ' i \
+  $email = $_REQUEST['email'];
+  $password = $_REQUEST['password'];
   
   $_SESSION = [];
   session_destroy();

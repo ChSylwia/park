@@ -11,7 +11,8 @@
             $surname = $user[1];
             $user_id=$user[2];
             $full_name = "$name $surname";
-            echo $full_name;
+            $initials = "$name[0] $surname[0]";
+            echo $initials;
           ?>
         </a>
       </li>

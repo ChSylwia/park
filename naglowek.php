@@ -6,9 +6,10 @@
       <li class="logowanie">
         <a href="profil.php">
           <?php
-            $user = get_first_row($conn, "SELECT name, surname FROM user JOIN session ON user.id = session.user_id WHERE session.id = $_COOKIE[session_id]");
+            $user = get_first_row($conn, "SELECT name, surname, session.user_id FROM user JOIN session ON user.id = session.user_id WHERE session.id = $_COOKIE[session_id]");
             $name = $user[0];
             $surname = $user[1];
+            $user_id=$user[2];
             $full_name = "$name $surname";
             echo $full_name;
           ?>

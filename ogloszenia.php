@@ -1,4 +1,5 @@
 <?php
+
   include 'polaczenie.php';
   include 'funkcje_pomocnicze.php';
 ?>
@@ -27,7 +28,14 @@
         <div class="pasek_opcji">
           <p>Wyszukiwarka ogłoszeń</p>
           <button class="dodaj">
-            <a href="ogloszenia_dodaj.html">Dodaj</a>
+            <?php if(isset($_COOKIE['session_id'])){
+              echo '<a href="ogloszenia_dodaj.html">Dodaj</a>';
+            }
+            else{
+              echo '<a href="logowanie.html">Dodaj</a>';
+            }
+            ?>
+            
           </button>
         </div>
         <form method="post" action="form_wyszukaj.php">
@@ -52,7 +60,9 @@
     <script>
       var wyszukaj = document.getElementById("wyszukaj");
       const parametr = new URLSearchParams(window.location.search);
-      var nazwa = parametr.get("nazwa");
+      var nazwa = (parametr.get("nazwa") || "");
+      console.log(nazwa);
+      console.log(parametr);
       var adres = "http://localhost/projekt/form_wyszukaj.php?wildcard=";
       async function pobierz_dla_tekstu(tekst) {
         console.log(adres + tekst);
@@ -70,7 +80,7 @@
         response.forEach((element, index, self) => {
           var option = document.createElement("div");
           option.onclick = () => {
-            window.location.href = `http://localhost/projekt/ogloszenia_informacja.html?id=${element.id}`;
+            window.location.href = `http://localhost/projekt/ogloszenia_informacja.php?id=${element.id}`;
           };
           option.innerHTML = `${element.title} (${element.name})`;
 

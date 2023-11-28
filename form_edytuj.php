@@ -11,11 +11,11 @@
     echo $sql;
     if( mysqli_query($conn, $sql) ){
         
-        header("Location: ogloszenia_informacja.html?id=$id");
+        header("Location: ogloszenia_informacja.php?id=$id");
         
 
     } else{
-        header("Location: ogloszenia_informacja.html?id=$id");
+        header("Location: ogloszenia_informacja.php?id=$id");
     }
     mysqli_close($conn);
 ?>

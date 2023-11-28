@@ -46,6 +46,7 @@
             cols="30"
             placeholder=" Opis wydarzenia"
           ></textarea>
+          <input hidden name="uzytkownik" value=<?php echo $user_id; ?>/>
           <input type="submit" id="input_dodawanie" value="Dodaj" />
         </form>
       </div>

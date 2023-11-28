@@ -1,3 +1,7 @@
+<?php
+  include 'polaczenie.php';
+  include 'funkcje_pomocnicze.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,18 +21,29 @@
   </head>
   <body>
     <a href="index.html"><img class="logo" src="svg/logo.svg" /></a>
-    <div class="menu">
-      <ul>
-        <li class="ogloszenia"><a href="ogloszenia.html">Ogłoszenia</a></li>
-        <li class="opinie"><a href="opinie.php">Opinie</a></li>
-        <li class="logowanie"><a href="logowanie.html">Zaloguj się</a></li>
-      </ul>
-    </div>
+    <?php include 'naglowek.php' ?>
     <div class="srodek">
       <div class="pasek_opcji">
-        <button class="edytuj" id="button_edytuj" onclick="przejscie()">
-          Edytuj
-        </button>
+        <?php 
+        $url = "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        $parts = parse_url($url);
+        parse_str($parts['query'], $query);
+        $id=$query['id']; 
+        if(isset($_COOKIE['session_id'])){
+          $sql_user = "SELECT session.user_id FROM announcement INNER JOIN user on announcement.user_id=user.id JOIN session ON user.id = session.user_id WHERE session.user_id = $user_id";
+        $result = mysqli_query($conn,$sql_user);
+        $row =  mysqli_fetch_array($result);
+        $sql_user_ann="SELECT user_id FROM announcement WHERE id= $id";
+        $result_user_ann = mysqli_query($conn,$sql_user_ann);
+        $row_user_ann =  mysqli_fetch_array($result_user_ann);
+        if($row && $row['user_id']==$row_user_ann['user_id']){
+          echo '
+          <button class="edytuj" id="button_edytuj" onclick="przejscie()">
+            Edytuj
+          </button>';
+        } 
+        }?>
+        
       </div>
       <div class="zawartosc"></div>
     </div>
@@ -66,6 +81,7 @@
       pobierz_dla_tekstu("");
 
       function przejscie() {
+        
         window.location.href = `http://localhost/projekt/ogloszenia_edytuj.php?id=${id}`;
       }
     </script>

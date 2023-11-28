@@ -1,11 +1,12 @@
  <?php
         include 'polaczenie.php';
+
         $tytul = $_REQUEST['tytul'];
         $park = $_REQUEST['parks'];
         $data = $_REQUEST['data'];
         $opis = $_REQUEST['opis'];
-
-        $sql = "INSERT INTO announcement(`title`, `park`, `date`, `description`) VALUES ('$tytul',$park,'$data','$opis') ";
+        $uzytkownik = $_REQUEST['uzytkownik'];
+        $sql = "INSERT INTO announcement(`title`, `park`, `date`, `description`, `user_id`) VALUES ('$tytul',$park,'$data','$opis','$uzytkownik') ";
         $sql2 = "SELECT park FROM `announcement` WHERE title='$tytul' && park='$park' && date='$data'";
         $result = mysqli_query($conn, $sql2);
         $row =  mysqli_fetch_array($result); 

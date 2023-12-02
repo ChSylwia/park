@@ -1,6 +1,8 @@
 <?php
   include 'polaczenie.php';
   include 'funkcje_pomocnicze.php';
+  $datetime = new DateTime('tomorrow');
+          
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +39,9 @@
           <input list="parks" id="park" name="parks" placeholder="Park" />
           <datalist id="parks" required></datalist>
 
-          <input type="date" id="data" name="data" required placeholder="" />
+          <input type="date" id="data" name="data" min=
+          <?php echo $datetime->format('Y-m-d'); ?>
+          required placeholder="" />
           <textarea
             type="text"
             id="opis"

@@ -88,7 +88,7 @@
               ?>
         </div>
         <div class="linki">
-          <p><?php echo "<a class='link_ogl' href='ogloszenia.html?nazwa=${nazwa}'>Ogłoszenia</a>" ?></p>
+          <p><?php echo "<a class='link_ogl' href='ogloszenia.php?nazwa=${nazwa}'>Ogłoszenia</a>" ?></p>
           </div>
       </div>
     </div>

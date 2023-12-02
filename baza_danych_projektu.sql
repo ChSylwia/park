@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Lis 28, 2023 at 07:01 PM
--- Wersja serwera: 11.1.2-MariaDB
+-- Generation Time: Dec 02, 2023 at 04:33 PM
+-- Wersja serwera: 10.4.28-MariaDB
 -- Wersja PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -32,18 +32,22 @@ CREATE TABLE `announcement` (
   `title` varchar(255) NOT NULL,
   `park` int(11) NOT NULL,
   `date` date NOT NULL,
-  `description` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+  `description` text NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `announcement`
 --
 
-INSERT INTO `announcement` (`id`, `title`, `park`, `date`, `description`) VALUES
-(1, 'Zwiedzanie za pół ceny', 2, '2024-07-12', 'W związku z trwającymi wakacjami, chcemy zachęcić do zwiedzenia naszego parku. Z tej okazji obniżamy ceny o połowę. Serdecznie zapraszamy!'),
-(2, 'Przywitanie nowego zwierzaka', 9, '2024-05-20', 'Do naszego Rezerwatu zostanie przywieziony Orzeł. Zachęcamy wszystkich do przybycia i poszukania tego cudownego stworzenia'),
-(3, 'Spotkanie z kulturą', 4, '2023-11-24', 'Zapraszamy na cykl spotkań, w których będziemy prezentować słynne dzieła naszych pisarzy.'),
-(4, 'Przywitanie łabędzi', 5, '2024-03-13', 'Do naszego Rezerwatu jak co rok wracają łabędzie. Zachęcamy do odwiedzenia nas i przywitania tych ptaków, oraz dowiedzenia się trochę na ich temat');
+INSERT INTO `announcement` (`id`, `title`, `park`, `date`, `description`, `user_id`) VALUES
+(1, 'Zwiedzanie za pół ceny', 2, '2024-07-12', 'W związku z trwającymi wakacjami, chcemy zachęcić do zwiedzenia naszego parku. Z tej okazji obniżamy ceny o połowę. Serdecznie zapraszamy!', 3),
+(2, 'Przywitanie nowego zwierzaka', 9, '2024-05-20', 'Do naszego Rezerwatu zostanie przywieziony Orzeł. Zachęcamy wszystkich do przybycia i poszukania tego cudownego stworzenia', 2),
+(3, 'Spotkanie z kulturą', 4, '2023-11-24', 'Zapraszamy na cykl spotkań, w których będziemy prezentować słynne dzieła naszych pisarzy.', 3),
+(4, 'Przywitanie łabędzi', 5, '2024-03-13', 'Do naszego Rezerwatu jak co rok wracają łabędzie. Zachęcamy do odwiedzenia nas i przywitania tych ptaków, oraz dowiedzenia się trochę na ich temat', 1),
+(6, 'Dolina zimą', 12, '2023-12-20', 'Zapraszamy na spacer po dolinie, w której będzie otwarty ogród świateł. ', 3),
+(7, 'Sadzenie drzew', 8, '2023-08-08', 'Zapraszamy na akcję charytatywną sadzenia drzew', 1),
+(8, 'Zimowy spacer', 10, '2023-12-31', 'W sylwestrową noc zapraszamy na spacer ścieżkami naszego parku, w którym rozdamy sztuczne ognie i razem przywitamy nadchodzący rok', 1);
 
 -- --------------------------------------------------------
 
@@ -54,7 +58,7 @@ INSERT INTO `announcement` (`id`, `title`, `park`, `date`, `description`) VALUES
 CREATE TABLE `city` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `city`
@@ -83,7 +87,7 @@ CREATE TABLE `opinie` (
   `opinia` text NOT NULL,
   `user` text DEFAULT NULL,
   `date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `opinie`
@@ -110,7 +114,7 @@ CREATE TABLE `park` (
   `link` varchar(255) DEFAULT NULL,
   `pet_friendly` int(11) DEFAULT NULL,
   `suitable_for_children` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `park`
@@ -168,7 +172,7 @@ INSERT INTO `user` (`id`, `name`, `surname`, `email`, `password`, `is_admin`) VA
 (2, 'Anna', 'Nowak', 'anna.nowak@example.com', 'password', b'0'),
 (3, 'Adam', 'Nowakowski', 'adam@wp.pl', 'Mazowiecka123!@', b'0'),
 (4, 'Adam', 'Nowak', 'adam.nowak@gmail.com', '123456', b'0'),
-(5, 'Ala', 'Makota', 'ala123@wp.pl', '123', b'0');
+(5, 'Alicja', 'Buk', 'ala123@wp.pl', 'qwerty', b'0');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -179,7 +183,8 @@ INSERT INTO `user` (`id`, `name`, `surname`, `email`, `password`, `is_admin`) VA
 --
 ALTER TABLE `announcement`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `park` (`park`);
+  ADD KEY `park` (`park`),
+  ADD KEY `user_id` (`user_id`) USING BTREE;
 
 --
 -- Indeksy dla tabeli `city`
@@ -221,7 +226,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `announcement`
 --
 ALTER TABLE `announcement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `city`
@@ -245,7 +250,7 @@ ALTER TABLE `park`
 -- AUTO_INCREMENT for table `session`
 --
 ALTER TABLE `session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -261,7 +266,8 @@ ALTER TABLE `user`
 -- Constraints for table `announcement`
 --
 ALTER TABLE `announcement`
-  ADD CONSTRAINT `announcement_ibfk_1` FOREIGN KEY (`park`) REFERENCES `park` (`id`);
+  ADD CONSTRAINT `announcement_ibfk_1` FOREIGN KEY (`park`) REFERENCES `park` (`id`),
+  ADD CONSTRAINT `announcement_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `park`

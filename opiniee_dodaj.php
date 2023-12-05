@@ -1,6 +1,10 @@
 <?php
     include('polaczenie.php');
     include('funkcje_pomocnicze.php');
+  
+    if (empty($_COOKIE['session_id'])) {
+      redirect('logowanie.php', $conn);
+    }
 
     if(isset($_POST['submit'])){
       $opis = $_POST['opis'];

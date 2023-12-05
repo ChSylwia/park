@@ -2,7 +2,10 @@
   include 'polaczenie.php';
   include 'funkcje_pomocnicze.php';
   $datetime = new DateTime('tomorrow');
-          
+  
+  if (empty($_COOKIE['session_id'])) {
+    redirect('logowanie.php', $conn);
+  }
 ?>
 
 <!DOCTYPE html>

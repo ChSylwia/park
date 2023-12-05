@@ -1,9 +1,13 @@
 <?php
   include 'polaczenie.php';
   include 'funkcje_pomocnicze.php';
+  include 'dane_uzytkownika.php';
 
   if (empty($_COOKIE['session_id'])) {
     redirect('logowanie.php', $conn);
+  }
+  if (!$is_admin) {
+    redirect('profil.php', $conn);
   }
 ?>
 
@@ -28,14 +32,16 @@
     <?php include 'naglowek.php' ?>
     <div class="srodek">
       <div class="lewy">
-        <p>Witaj, <?= $full_name ?></p>
-        <?php if ($is_admin): ?>
-          <a class="opcja" href="panel_administracyjny.php">Panel administracyjny</a>
-        <?php endif ?>
-        <a class="opcja" href="profil_edycja_imie_nazwisko.php">Zmień imię/nazwisko</a>
-        <a class="opcja" href="profil_edycja_email.php">Zmień e-mail</a>
-        <a class="opcja" href="profil_edycja_haslo.php">Zmień hasło</a>
-        <a class="opcja" href="wyloguj.php">Wyloguj się</a>
+        <p>Zarządzanie parkami</p>
+        <ol>
+          <?php
+            $parks = mysqli_query($conn, "SELECT name FROM park");
+            while ($park = mysqli_fetch_row($parks)) {
+              echo "$park[0]<br>";
+            }
+          ?>
+        </ol>
+        <a class="opcja" href="panel_administracyjny_parki_dodaj.php">Dodaj park</a>
       </div>
     </div>
     <div class="pasek_dolny"></div>

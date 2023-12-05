@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2023 at 04:33 PM
--- Wersja serwera: 10.4.28-MariaDB
+-- Generation Time: Dec 05, 2023 at 06:26 PM
+-- Wersja serwera: 11.1.2-MariaDB
 -- Wersja PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -34,7 +34,7 @@ CREATE TABLE `announcement` (
   `date` date NOT NULL,
   `description` text NOT NULL,
   `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
 --
 -- Dumping data for table `announcement`
@@ -47,7 +47,8 @@ INSERT INTO `announcement` (`id`, `title`, `park`, `date`, `description`, `user_
 (4, 'Przywitanie łabędzi', 5, '2024-03-13', 'Do naszego Rezerwatu jak co rok wracają łabędzie. Zachęcamy do odwiedzenia nas i przywitania tych ptaków, oraz dowiedzenia się trochę na ich temat', 1),
 (6, 'Dolina zimą', 12, '2023-12-20', 'Zapraszamy na spacer po dolinie, w której będzie otwarty ogród świateł. ', 3),
 (7, 'Sadzenie drzew', 8, '2023-08-08', 'Zapraszamy na akcję charytatywną sadzenia drzew', 1),
-(8, 'Zimowy spacer', 10, '2023-12-31', 'W sylwestrową noc zapraszamy na spacer ścieżkami naszego parku, w którym rozdamy sztuczne ognie i razem przywitamy nadchodzący rok', 1);
+(8, 'Zimowy spacer', 10, '2023-12-31', 'W sylwestrową noc zapraszamy na spacer ścieżkami naszego parku, w którym rozdamy sztuczne ognie i razem przywitamy nadchodzący rok', 1),
+(9, 'Nowy Rok', 13, '2024-01-01', 'Chodźcie na imprezę noworoczną!!!', 5);
 
 -- --------------------------------------------------------
 
@@ -58,7 +59,7 @@ INSERT INTO `announcement` (`id`, `title`, `park`, `date`, `description`, `user_
 CREATE TABLE `city` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
 --
 -- Dumping data for table `city`
@@ -87,7 +88,7 @@ CREATE TABLE `opinie` (
   `opinia` text NOT NULL,
   `user` text DEFAULT NULL,
   `date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
 --
 -- Dumping data for table `opinie`
@@ -96,7 +97,8 @@ CREATE TABLE `opinie` (
 INSERT INTO `opinie` (`id`, `id_park`, `id_user`, `opinia`, `user`, `date`) VALUES
 (1, 1, NULL, 'Tak bardzo fajny jest ten park', NULL, '2023-11-21 16:19:02'),
 (2, 4, NULL, 'Ten trochę też', NULL, '2023-11-21 16:20:04'),
-(3, 13, NULL, 'AAAAAAAAAAAA\r\n\r\n\r\nWWWWW', NULL, '2023-11-21 16:20:14');
+(3, 13, NULL, 'AAAAAAAAAAAA\r\n\r\n\r\nWWWWW', NULL, '2023-11-21 16:20:14'),
+(4, 1, 5, 'czy nie powinno być przypadkiem \"kampinoWski\"???', NULL, '2023-12-04 16:18:26');
 
 -- --------------------------------------------------------
 
@@ -114,7 +116,7 @@ CREATE TABLE `park` (
   `link` varchar(255) DEFAULT NULL,
   `pet_friendly` int(11) DEFAULT NULL,
   `suitable_for_children` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
 
 --
 -- Dumping data for table `park`
@@ -135,7 +137,8 @@ INSERT INTO `park` (`id`, `name`, `city`, `surface`, `creation_date`, `attractio
 (12, 'Dolina Rzeki Łydyni', 8, 57.63, '2004-05-07', 'Teren ten urozmaicają łąki i niewielkie zagajniki, a także liczne stawy, z których największy zw. Torfami zajmuje około 5ha. Obszar ten to raj dla ornitologów. Zamieszkują tu około 62 gatunki ptaków (min. błotniaki stawowe, myszołowy, mewy śmieszki, bociany, derkacze, kosy, sowy, bażanty, pustułki, różne gatunki kaczek oraz inne), a także ssaki wodne (bobry, wydry). Niedostępność terenu oraz bogata różnorodność roślin stanowi dla tych zwierząt doskonałe warunki do życia.\r\n', 'https://crfop.gdos.gov.pl/CRFOP/widok/viewzespolprzyrodniczokrajobrazowy.jsf?fop=PL.ZIPOP.1393.ZPK.88', 1, 1),
 (13, 'Gostynińsko-Włocławski Park Krajobrazowy', 2, 38950.00, '1979-04-05', 'Leśny park krajobrazowy z wydmami śródlądowymi, jeziorami, w których latem można się kąpać, i mokradłami znanymi z ptactwa. Na terenie parku znajduje się wiele obiektów chronionych, np. dąb Jan, którego wiek szacuje się na 300 lat.', 'https://parki.kujawsko-pomorskie.pl/gwpk', 1, 1),
 (14, 'Brudzeński Park Krajobrazowy', 2, 3171.00, '1988-06-09', 'Leży na prawym brzegu Wisły na północny zachód od Płocka i obejmuje przyujściowy (dolny) odcinek Skrwy Prawej oraz przylegające do niego kompleksy leśne.\r\nNa terenie Brudzeńskiego Parku Krajobrazowego znajdują się 3 rezerwaty przyrody:\r\n• Rezerwat krajobrazowy „Sikórz” o powierzchni 215,87 ha, obejmujący 12- kilometrowy odcinek doliny Skrwy od miejscowości Sikórz do wsi Radotki ;\r\n• Rezerwat krajobrazowy-leśny „Brwilno” o powierzchni 65,68 ha, położony w południowej części Parku, na wschód od ujścia Skrwy Prawej;\r\n• Rezerwat krajobrazowy „Brudzeńskie Jary” o powierzchni 39,10 ha, obejmuje uroczysko leśne Brudzeń w północnej części Parku.', 'http://brudzen.pl/strona/brudzenski-park-krajobrazowy', 1, 1),
-(15, 'Rezerwat przyrody Dąbrowa Łącka', 2, 304.83, '1990-08-29', 'Celem ochrony rezerwatu jest zachowanie licznych zbiorowisk roślinnych o charakterze naturalnym, obejmującym bory mieszane, grądy, łęgi, olsy, jak też obszar jeziora Łąckiego Małego oraz urozmaiconą rzeźbę terenu. Przedmiotem ochrony są rkosystemy leśne, bagienne i jeziorowe.', 'https://pl.wikipedia.org/wiki/Rezerwat_przyrody_Dąbrowa_Łącka', NULL, 1);
+(15, 'Rezerwat przyrody Dąbrowa Łącka', 2, 304.83, '1990-08-29', 'Celem ochrony rezerwatu jest zachowanie licznych zbiorowisk roślinnych o charakterze naturalnym, obejmującym bory mieszane, grądy, łęgi, olsy, jak też obszar jeziora Łąckiego Małego oraz urozmaiconą rzeźbę terenu. Przedmiotem ochrony są rkosystemy leśne, bagienne i jeziorowe.', 'https://pl.wikipedia.org/wiki/Rezerwat_przyrody_Dąbrowa_Łącka', NULL, 1),
+(16, 'park testowy', 1, 0.00, '2023-12-04', 'park testowy', 'https://php.net/', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -226,7 +229,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `announcement`
 --
 ALTER TABLE `announcement`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `city`
@@ -238,19 +241,19 @@ ALTER TABLE `city`
 -- AUTO_INCREMENT for table `opinie`
 --
 ALTER TABLE `opinie`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `park`
 --
 ALTER TABLE `park`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `session`
 --
 ALTER TABLE `session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `user`

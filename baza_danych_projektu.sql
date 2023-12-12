@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 05, 2023 at 06:26 PM
+-- Generation Time: Dec 12, 2023 at 07:28 PM
 -- Wersja serwera: 11.1.2-MariaDB
 -- Wersja PHP: 8.2.4
 
@@ -137,8 +137,7 @@ INSERT INTO `park` (`id`, `name`, `city`, `surface`, `creation_date`, `attractio
 (12, 'Dolina Rzeki Łydyni', 8, 57.63, '2004-05-07', 'Teren ten urozmaicają łąki i niewielkie zagajniki, a także liczne stawy, z których największy zw. Torfami zajmuje około 5ha. Obszar ten to raj dla ornitologów. Zamieszkują tu około 62 gatunki ptaków (min. błotniaki stawowe, myszołowy, mewy śmieszki, bociany, derkacze, kosy, sowy, bażanty, pustułki, różne gatunki kaczek oraz inne), a także ssaki wodne (bobry, wydry). Niedostępność terenu oraz bogata różnorodność roślin stanowi dla tych zwierząt doskonałe warunki do życia.\r\n', 'https://crfop.gdos.gov.pl/CRFOP/widok/viewzespolprzyrodniczokrajobrazowy.jsf?fop=PL.ZIPOP.1393.ZPK.88', 1, 1),
 (13, 'Gostynińsko-Włocławski Park Krajobrazowy', 2, 38950.00, '1979-04-05', 'Leśny park krajobrazowy z wydmami śródlądowymi, jeziorami, w których latem można się kąpać, i mokradłami znanymi z ptactwa. Na terenie parku znajduje się wiele obiektów chronionych, np. dąb Jan, którego wiek szacuje się na 300 lat.', 'https://parki.kujawsko-pomorskie.pl/gwpk', 1, 1),
 (14, 'Brudzeński Park Krajobrazowy', 2, 3171.00, '1988-06-09', 'Leży na prawym brzegu Wisły na północny zachód od Płocka i obejmuje przyujściowy (dolny) odcinek Skrwy Prawej oraz przylegające do niego kompleksy leśne.\r\nNa terenie Brudzeńskiego Parku Krajobrazowego znajdują się 3 rezerwaty przyrody:\r\n• Rezerwat krajobrazowy „Sikórz” o powierzchni 215,87 ha, obejmujący 12- kilometrowy odcinek doliny Skrwy od miejscowości Sikórz do wsi Radotki ;\r\n• Rezerwat krajobrazowy-leśny „Brwilno” o powierzchni 65,68 ha, położony w południowej części Parku, na wschód od ujścia Skrwy Prawej;\r\n• Rezerwat krajobrazowy „Brudzeńskie Jary” o powierzchni 39,10 ha, obejmuje uroczysko leśne Brudzeń w północnej części Parku.', 'http://brudzen.pl/strona/brudzenski-park-krajobrazowy', 1, 1),
-(15, 'Rezerwat przyrody Dąbrowa Łącka', 2, 304.83, '1990-08-29', 'Celem ochrony rezerwatu jest zachowanie licznych zbiorowisk roślinnych o charakterze naturalnym, obejmującym bory mieszane, grądy, łęgi, olsy, jak też obszar jeziora Łąckiego Małego oraz urozmaiconą rzeźbę terenu. Przedmiotem ochrony są rkosystemy leśne, bagienne i jeziorowe.', 'https://pl.wikipedia.org/wiki/Rezerwat_przyrody_Dąbrowa_Łącka', NULL, 1),
-(16, 'park testowy', 1, 0.00, '2023-12-04', 'park testowy', 'https://php.net/', NULL, NULL);
+(15, 'Rezerwat przyrody Dąbrowa Łącka', 2, 304.83, '1990-08-29', 'Celem ochrony rezerwatu jest zachowanie licznych zbiorowisk roślinnych o charakterze naturalnym, obejmującym bory mieszane, grądy, łęgi, olsy, jak też obszar jeziora Łąckiego Małego oraz urozmaiconą rzeźbę terenu. Przedmiotem ochrony są rkosystemy leśne, bagienne i jeziorowe.', 'https://pl.wikipedia.org/wiki/Rezerwat_przyrody_Dąbrowa_Łącka', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -247,13 +246,13 @@ ALTER TABLE `opinie`
 -- AUTO_INCREMENT for table `park`
 --
 ALTER TABLE `park`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `session`
 --
 ALTER TABLE `session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `user`

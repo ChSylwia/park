@@ -1,0 +1,44 @@
+.wypelnienie {
+  text-align: center;
+  float: left;
+  width: 80vw;
+}
+
+.wypelnienie div {
+  background-color: #d0d4ca;
+  margin: 5px;
+  padding: 5px;
+  font-size: 20px;
+  color: #1c315e;
+  border: #d0d4ca;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.wypelnienie a {
+  text-decoration: none;
+  color: #1c315e;
+}
+
+div.pasek_dolny {
+  position: fixed;
+  background-color: #88a47c;
+  width: 50vw;
+  height: 5vw;
+  float: left;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+div.menu,
+img.logo {
+  position: fixed;
+  z-index: 1;
+}
+
+div.lewy {
+  width: 99vw;
+  min-height: 80vh;
+  float: left;
+  overflow: auto;
+}

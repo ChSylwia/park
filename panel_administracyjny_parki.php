@@ -23,6 +23,7 @@
     />
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" type="text/css" href="style_profil.css" />
+    <link rel="stylesheet" type="text/css" href="style_panel_administracyjny.css" />
     <link href="polaczenie.php" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Parki</title>
@@ -33,15 +34,17 @@
     <div class="srodek">
       <div class="lewy">
         <p>Zarządzanie parkami</p>
-        <ol>
+        <a class="opcja" href="panel_administracyjny_parki_dodaj.php">Dodaj park</a>
+        <p>Usuń park</p>
+        <ol class="wypelnienie">
           <?php
-            $parks = mysqli_query($conn, "SELECT name FROM park");
+            $parks = mysqli_query($conn, "SELECT id, name FROM park");
             while ($park = mysqli_fetch_row($parks)) {
-              echo "$park[0]<br>";
+              echo "<a href='panel_administracyjny_parki_usun.php?id=$park[0]'><div>$park[1]</div></a>";
             }
           ?>
         </ol>
-        <a class="opcja" href="panel_administracyjny_parki_dodaj.php">Dodaj park</a>
+        <div class="pasek_dolny" style="position: static; opacity: 0"></div>
       </div>
     </div>
     <div class="pasek_dolny"></div>

@@ -36,6 +36,7 @@
     />
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" type="text/css" href="style_parki_dodaj.css" />
+    <link rel="stylesheet" type="text/css" href="style_panel_administracyjny.css" />
     <link href="polaczenie.php" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Parki</title>

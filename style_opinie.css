@@ -9,6 +9,11 @@ button.dodaj {
     border-radius: 20px;
   }
 
+  button a {
+    color: #e6e2c3;
+    text-decoration: none;
+  }
+
   div.pasek_gora {
     width: 100vw;
     height: 5vw;
@@ -52,3 +57,4 @@ button.dodaj {
     font-weight: 100;
 
   }
+

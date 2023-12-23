@@ -58,4 +58,10 @@
 
 #Edit_button{
   position:sticky;
+  
+}
+
+button p{
+  background-color: green;
+  border-radius: 20px;
 }

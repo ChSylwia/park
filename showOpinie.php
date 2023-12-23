@@ -1,9 +1,9 @@
 <?php
-    include('polaczenie.php');
-
+      include 'polaczenie.php';
+      include 'funkcje_pomocnicze.php';
     $k = $_POST['id'];
     $k = trim($k);
-    $sql ="SELECT user.name, opinie.date, opinie.opinia, opinie.id, opinie.id_park, user.surname from opinie inner join user on opinie.id_user = user.id WHERE opinie.id_park={$k}";
+    $sql ="SELECT user.name, opinie.date, opinie.opinia, opinie.id, opinie.id_park, user.surname, user.id, opinie.id_user from opinie inner join user on opinie.id_user = user.id WHERE opinie.id_park={$k}";
     $res = mysqli_query($conn, $sql);
 
     while($c = mysqli_fetch_array($res)){
@@ -19,9 +19,19 @@
     <?php    echo $c['date']."<br>";?>
     </p>
     <textarea id="opinia" type="text" name="opinia" disabled><?=$c['opinia']?></textarea>
-    <div id="edytuj">
-    <button type="button" id="Edit_button" class="dodaj" >Edytuj</button>
-    </div>
+
+
+    <?php 
+        $a = $c['id_user'];
+        $user1 = get_first_value($conn, "SELECT session.user_id FROM user JOIN session ON user.id = session.user_id WHERE session.id = $_COOKIE[session_id]");
+
+        if($a == $user1){
+          echo '
+          <div id="edytuj">
+          <button type="button" id="Edit_button" class="dodaj" >Edytuj</button>
+          </div>';
+        } 
+        ?>
     <?php    echo "</div>";?>
     
     
@@ -58,7 +68,7 @@
         })}})
         } else {
             opinia.disabled = false;
-            button.innerHTML = 'Zapisz';
+            button.innerHTML = '<p name="Zapisz">Zapisz</p>';
         }
     } 
     for(var i = 0; i<buttons.length; i++){

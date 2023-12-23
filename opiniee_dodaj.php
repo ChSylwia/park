@@ -6,17 +6,7 @@
       redirect('logowanie.php', $conn);
     }
 
-    if(isset($_POST['submit'])){
-      $opis = $_POST['opis'];
-      $park = $_POST['park'];
-      $date = date('Y-m-d H:i:s');
-      $query = mysqli_query($conn, "Insert into opinie(opinia, id_park, date) Value ('$opis', '$park', '$date')");
-      if($query){
-        echo "<script> alert('Opinia dodana pomyślnie')  </script>";
-      } else {
-        echo "<script> alert('Błąd')  </script>";
-      }
-    }
+
 ?>
 
 <!DOCTYPE html>
@@ -67,12 +57,28 @@
               cols="30"
               placeholder=" Opinia"
             ></textarea>
-
+            <input hidden name="uzytkownik" value=<?php echo $user_id; ?>/>
 
             <button id="input_dodawanie" type="submit" name="submit">Dodaj</button>
           </form>
         </div>
       </div>
+
+      <?php
+    if(isset($_POST['submit'])){
+      $opis = $_POST['opis'];
+      $park = $_POST['park'];
+      $date = date('Y-m-d H:i:s');
+      $user = $user_id;
+      
+      $query = mysqli_query($conn, "Insert into opinie(opinia, id_park, date, id_user) Value ('$opis', '$park', '$date', '$user')");
+      if($query){
+        echo "<script> alert('Opinia dodana pomyślnie')  </script>";
+      } else {
+        echo "<script> alert('Błąd')  </script>";
+      }
+    }
+      ?>
 
 
       <div class="pasek_dolny"></div>
@@ -80,6 +86,18 @@
         <img class="lisc" src="svg/leaf.svg" />
       </div>
 
+
+      <br><br>
+      <br><br>
+      <br><br>
+      <br><br>
+      <br><br>
+      <br><br>
+      <br><br>
+
+      <?php
+
+?>
 
 
   </body>
